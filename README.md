@@ -34,6 +34,23 @@ To start a web server for the application, run:
 ## Scaling
     
     $ kubectl scale --replicas=3 rc demo-1.0.0
+    
+## Rolling Update
+
+    $ kubectl rolling-update --update-period="5s" demo-1.0.0 -f kubernetes/rc2.yaml
+     
+ 
+## Curl on update 
+
+    $ while true; do curl "http://<external ip>" ; echo ; sleep 0.5 ; done
+    
+## Canary Deployment
+
+First scale the previous version of to 4 then create a new RC with version 2.0.0 with only 1 replica and deploy it without rolling update:
+    
+    $ kubectl create -f kubernetes/rc-2.0.0.yml
+    
+Since the service routes on name "demo" only it'll the 2.0.0 on every 5th request! (one we're happy we can do a rolling update after having deleted the 2.0.0 rc)
 
 ## License
 
