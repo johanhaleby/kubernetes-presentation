@@ -2,11 +2,12 @@
   (:gen-class)
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
+            [clojure.tools.logging :as log]
             [ring.adapter.jetty :refer [run-jetty]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 (defroutes app-routes
            (GET "/" []
-             (println "Received request to V1")
+             (log/info "Received request to V1")
              "Hello World V1")
            (route/not-found "Not Found"))
 
