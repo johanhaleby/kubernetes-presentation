@@ -37,7 +37,7 @@ To start a web server for the application, run:
     
 ## Rolling Update
 
-    $ kubectl rolling-update --update-period="5s" demo-1.0.0 -f kubernetes/rc2.yaml
+    $ kubectl rolling-update --update-period="5s" demo-1.0.0 -f kubernetes/rc-2.0.0.yaml
      
  
 ## Curl on update 
@@ -48,7 +48,7 @@ To start a web server for the application, run:
 
 First scale the previous version of to 4 then create a new RC with version 2.0.0 with only 1 replica and deploy it without rolling update:
     
-    $ kubectl create -f kubernetes/rc-2.0.0.yml
+    $ kubectl create -f kubernetes/rc-2.0.0.yaml
     
 Since the service routes on name "demo" only it'll the 2.0.0 on every 5th request! (one we're happy we can do a rolling update after having deleted the 2.0.0 rc)
 
