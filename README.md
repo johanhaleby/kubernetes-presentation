@@ -11,20 +11,30 @@ You will need [Leiningen][] 2.0.0 or above installed.
 
 To start a web server for the application, run:
 
-    lein ring server
+    $ lein ring server
     
 ## Dockerify
 
-    lein uberimage
+    $ lein uberimage
 
 ## Running in Docker
     
-    docker run --rm -p 3000:3000 gcr.io/parkster-env-stughelg/kubernetes-presentation:1.0.0
+    $ docker run --rm -p 3000:3000 gcr.io/parkster-env-stughelg/kubernetes-presentation:1.0.0
 
 ## Pushing to GKE Registry
 
-    gcloud docker push gcr.io/parkster-env-stughelg/kubernetes-presentation:1.0.0
+    $ gcloud docker push gcr.io/parkster-env-stughelg/kubernetes-presentation:1.0.0
+    
+## Deploy to Kubernetes
+
+    $ kubectl create -f kubernetes/rc.yaml
+    $ kubectl create -f kubernetes/service.yaml
+    $ kubectl get svc --watch # To wait for external IP
+
+## Scaling
+    
+    $ kubectl scale --replicas=3 rc demo-1.0.0
 
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2016 Johan Haleby

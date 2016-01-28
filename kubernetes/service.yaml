@@ -1,0 +1,16 @@
+---
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: demo
+  labels:
+    name: demo
+    version: 1.0.0
+spec:
+  type: LoadBalancer
+  ports:
+    - name: external
+      port: 80
+      targetPort: external
+  selector:
+    name: demo
