@@ -18,13 +18,13 @@ spec:
         version: 1.0.0
     spec:
       containers:
-        - name: "demo"
+        - name: demo
           image: "gcr.io/parkster-env-stughelg/kubernetes-presentation:1.0.0"
           livenessProbe:
             httpGet:
               path: /
               port: external
-            initialDelaySeconds: 30
+            initialDelaySeconds: 10
             timeoutSeconds: 1
           ports:
             - containerPort: 3000
