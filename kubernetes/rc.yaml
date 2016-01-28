@@ -7,7 +7,7 @@ metadata:
     name: demo
     version: 1.0.0
 spec:
-  replicas:
+  replicas: 2
   selector:
     name: demo
     version: 1.0.0
