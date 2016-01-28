@@ -5,7 +5,9 @@
             [ring.adapter.jetty :refer [run-jetty]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 (defroutes app-routes
-           (GET "/" [] "Hello World V1")
+           (GET "/" []
+             (println "Received request to V1")
+             "Hello World V1")
            (route/not-found "Not Found"))
 
 (def app
