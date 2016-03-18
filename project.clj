@@ -10,7 +10,7 @@
                  [ring/ring-jetty-adapter "1.4.0"]]
   :plugins [[lein-ring "0.9.7"] [com.palletops/uberimage "0.4.1"]]
   :ring {:handler kubernetes-presentation.handler/app}
-  :uberimage {:tag "gcr.io/parkster-env-jayway-pres/kubernetes-presentation:1.0.0"}
+  :uberimage {:tag "gcr.io/parkster-env-foocafe/kubernetes-presentation:1.0.0"}
   :main ^:skip-aot kubernetes-presentation.handler
   :profiles {:dev     {:dependencies [[javax.servlet/servlet-api "2.5"]
                                       [ring/ring-mock "0.3.0"]]}

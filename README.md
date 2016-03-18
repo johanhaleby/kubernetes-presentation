@@ -19,11 +19,11 @@ To start a web server for the application, run:
 
 ## Running in Docker
     
-    $ docker run --rm -p 3000:3000 gcr.io/parkster-env-stughelg/kubernetes-presentation:1.0.0
+    $ docker run --rm -p 3000:3000 gcr.io/parkster-env-foocafe/kubernetes-presentation:1.0.0
 
 ## Pushing to GKE Registry
 
-    $ gcloud docker push gcr.io/parkster-env-stughelg/kubernetes-presentation:1.0.0
+    $ gcloud docker push gcr.io/parkster-env-foocafe/kubernetes-presentation:1.0.0
     
 ## Deploy to Kubernetes
 
