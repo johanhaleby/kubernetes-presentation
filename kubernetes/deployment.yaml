@@ -1,0 +1,48 @@
+---
+kind: "Deployment"
+apiVersion: "extensions/v1beta1"
+metadata:
+  name: demo
+spec:
+  replicas: 2
+  strategy:
+    type: "RollingUpdate"
+    rollingUpdate:
+      # We specify that we don't want any of the old pods to become unavailable when we update.
+      # By default it'll stop one old pod while updating a to a new one. If the new one is not starting the old pod will not
+      # be restarted. Thus we want to start the new pod before stopping an old one.
+      maxUnavailable: 0
+      # Allow to increase the max replicas by 1 when an update takes place (since we will have 4 replicas while updating since maxUnavailable is 0)
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        name: demo
+        version: 1.0.0
+    spec:
+      containers:
+        - name: demo
+          image: "gcr.io/parkster-env-shared/kubernetes-presentation:1.0.0"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: external
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /
+              port: external
+            initialDelaySeconds: 20
+            timeoutSeconds: 1
+          ports:
+            - containerPort: 3000
+              name: external
+              protocol: "TCP"

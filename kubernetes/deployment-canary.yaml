@@ -1,0 +1,39 @@
+---
+kind: "Deployment"
+apiVersion: "extensions/v1beta1"
+metadata:
+  name: demo-canary
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: demo
+        version: 2.0.0-canary
+    spec:
+      containers:
+        - name: demo
+          image: "gcr.io/parkster-env-shared/kubernetes-presentation:2.0.0"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: external
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /
+              port: external
+            initialDelaySeconds: 20
+            timeoutSeconds: 1
+          ports:
+            - containerPort: 3000
+              name: external
+              protocol: "TCP"
